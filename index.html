@@ -111,8 +111,8 @@ footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding:3rem 4% 1.5
 .footer-bottom span{color:var(--aqua)}
 
 /* ANIMATIONS */
-.fade-up{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up{opacity:1;transform:translateY(0)}
+
 
 /* MOBILE */
 @media(max-width:768px){
@@ -325,8 +325,7 @@ footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding:3rem 4% 1.5
 
 <script>
 document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
 </script>
 </body>
 </html>
