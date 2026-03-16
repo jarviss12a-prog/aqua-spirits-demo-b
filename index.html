@@ -324,10 +324,6 @@ footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding:3rem 4% 1.5
 </footer>
 
 <script>
-let mx=0,my=0,tx=0,ty=0;
-function animateTrail(){tx+=(mx-tx)*.12;ty+=(my-ty)*.12;trail.style.transform=`translate(${tx-18}px,${ty-18}px)`;requestAnimationFrame(animateTrail)}
-animateTrail();
-document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{trail.style.width='50px';trail.style.height='50px'});el.addEventListener('mouseleave',()=>{trail.style.width='36px';trail.style.height='36px'})});
 document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
