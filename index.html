@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQUA Wine & Spirits — Premium Liquor Store in River North, Chicago</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--aqua:#00b4d8;--aqua-dark:#0096b7;--aqua-light:#90e0ef;--bg:#fafafa;--white:#ffffff;--charcoal:#1a1a2e;--text:#2d2d3a;--text-light:#6b7280;--card-bg:#ffffff;--border:#e5e7eb}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);cursor:none;overflow-x:hidden}
+.cursor{position:fixed;width:12px;height:12px;background:#f5c542;border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:difference}
+.cursor-trail{position:fixed;width:36px;height:36px;border:1.5px solid var(--aqua);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .08s ease,width .3s,height .3s}
+a,button{cursor:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 4%;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,250,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:all .3s}
+.nav-logo{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:700;color:var(--aqua);letter-spacing:2px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--aqua)}
+.nav-cta{background:var(--aqua);color:var(--white);padding:.55rem 1.5rem;border-radius:100px;font-size:.8rem;font-weight:600;text-decoration:none;border:none;transition:all .3s}
+.nav-cta:hover{background:var(--aqua-dark);transform:translateY(-1px);box-shadow:0 4px 15px rgba(0,180,216,.3)}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:5px}
+.menu-toggle span{width:24px;height:2px;background:var(--charcoal);transition:.3s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4% 4rem;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1300px;margin:0 auto;align-items:center;width:100%}
+.hero-text{max-width:560px}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,180,216,.08);color:var(--aqua);padding:.4rem 1rem;border-radius:100px;font-size:.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--aqua)}
+.hero h1{font-family:'Sora',sans-serif;font-size:clamp(2.5rem,5vw,4.2rem);font-weight:700;line-height:1.1;color:var(--charcoal);margin-bottom:1.2rem}
+.hero h1 .aqua{color:var(--aqua)}
+.hero p{color:var(--text-light);font-size:1.05rem;line-height:1.8;margin-bottom:2rem;max-width:460px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--aqua);color:var(--white);padding:.85rem 2rem;border-radius:100px;font-size:.85rem;font-weight:600;border:none;text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{background:var(--aqua-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,180,216,.25)}
+.btn-secondary{border:1.5px solid var(--border);color:var(--text);padding:.85rem 2rem;border-radius:100px;font-size:.85rem;font-weight:600;text-decoration:none;background:var(--white);transition:all .3s}
+.btn-secondary:hover{border-color:var(--aqua);color:var(--aqua)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.hero-stat-num{font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:700;color:var(--charcoal)}
+.hero-stat-num .aq{color:var(--aqua)}
+.hero-stat-label{font-size:.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-top:.2rem}
+.hero-img{position:relative}
+.hero-img img{width:100%;border-radius:16px;object-fit:cover;aspect-ratio:4/5;box-shadow:0 20px 60px rgba(0,0,0,.08)}
+.hero-img .float-badge{position:absolute;bottom:2rem;left:-2rem;background:var(--white);padding:1rem 1.5rem;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.1);display:flex;align-items:center;gap:.8rem}
+.float-badge .stars{color:#f59e0b;font-size:1rem}
+.float-badge .rating-text{font-size:.8rem;color:var(--text-light)}
+.float-badge .rating-text strong{color:var(--charcoal);font-size:1rem;display:block}
+
+/* SECTION */
+section{padding:6rem 4%}
+.section-label{display:inline-block;color:var(--aqua);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:.6rem;font-weight:600}
+.section-title{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--charcoal);margin-bottom:.8rem}
+.section-subtitle{color:var(--text-light);max-width:550px;line-height:1.7;font-size:.95rem}
+.section-header{text-align:center;margin-bottom:3.5rem}
+.section-header .section-subtitle{margin:0 auto}
+
+/* COLLECTIONS */
+.collections{background:var(--white)}
+.collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1200px;margin:0 auto}
+.collection-card{background:var(--bg);border-radius:16px;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid var(--border)}
+.collection-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.collection-card img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.card-body{padding:1.5rem}
+.card-body h3{font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:700;color:var(--charcoal);margin-bottom:.4rem}
+.card-body p{color:var(--text-light);font-size:.85rem;line-height:1.6;margin-bottom:1rem}
+.card-link{color:var(--aqua);font-size:.8rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+.card-link:hover{gap:.6rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1200px;margin:0 auto;align-items:center}
+.about-img{border-radius:16px;overflow:hidden}
+.about-img img{width:100%;aspect-ratio:5/6;object-fit:cover}
+.about-text .section-subtitle{margin-bottom:1.5rem}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.feature{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+.feature-icon{font-size:1.5rem;margin-bottom:.5rem}
+.feature h4{font-size:.9rem;font-weight:600;color:var(--charcoal);margin-bottom:.2rem}
+.feature p{font-size:.75rem;color:var(--text-light)}
+
+/* DELIVERY CTA */
+.delivery{background:var(--aqua);text-align:center;border-radius:0;position:relative}
+.delivery .section-label{color:rgba(255,255,255,.7)}
+.delivery .section-title{color:var(--white);max-width:650px;margin:0 auto .8rem}
+.delivery .section-subtitle{color:rgba(255,255,255,.8);margin:0 auto 2rem;text-align:center}
+.btn-white{background:var(--white);color:var(--aqua);padding:.85rem 2.5rem;border-radius:100px;font-size:.85rem;font-weight:600;border:none;text-decoration:none;transition:all .3s;display:inline-block}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.15)}
+
+/* HOURS */
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;margin:0 auto;align-items:start}
+.hours-list{list-style:none}
+.hours-list li{display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.hours-list .day{font-weight:500;color:var(--charcoal)}
+.hours-list .time{color:var(--aqua);font-weight:600}
+.location-info h3{font-family:'Sora',sans-serif;font-size:1.3rem;color:var(--charcoal);margin-bottom:1.5rem}
+.location-detail{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem;font-size:.9rem;color:var(--text-light)}
+.location-detail .icon{color:var(--aqua);font-size:1.1rem}
+.map-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;color:var(--aqua);font-weight:600;font-size:.85rem;text-decoration:none}
+.map-link:hover{text-decoration:underline}
+
+/* FOOTER */
+footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding:3rem 4% 1.5rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto}
+.footer-logo{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:700;color:var(--aqua);letter-spacing:2px;margin-bottom:.8rem}
+.footer-desc{font-size:.85rem;line-height:1.7;max-width:350px}
+.footer-col h4{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--aqua);margin-bottom:1rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.5rem}
+.footer-col ul a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.85rem;transition:color .2s}
+.footer-col ul a:hover{color:var(--white)}
+.footer-bottom{text-align:center;padding-top:2rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);font-size:.75rem}
+.footer-bottom span{color:var(--aqua)}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(250,250,250,.98);flex-direction:column;padding:1.5rem;gap:1.2rem;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}
+  .menu-toggle{display:flex}
+  .hero-grid,.about-grid,.hours-grid{grid-template-columns:1fr;gap:2rem}
+  .hero-img{order:-1}
+  .hero-img .float-badge{left:1rem;bottom:1rem}
+  .collection-grid{grid-template-columns:1fr}
+  .about-features{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:1.5rem}
+  section{padding:4rem 5%}
+  .hero{padding:6rem 5% 3rem}
+  .hero-stats{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AQUA</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#delivery">Delivery</a></li>
+    <li><a href="#hours">Hours</a></li>
+  </ul>
+  <a href="#delivery" class="nav-cta">Order Delivery</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text fade-up">
+      <div class="hero-tag"><span class="dot"></span> River North, Chicago</div>
+      <h1>Your Neighborhood <span class="aqua">Wine & Spirits</span> Destination</h1>
+      <p>Curated wines, premium spirits, and craft beer — hand-selected for Chicago's most discerning palates. Visit us or get it delivered.</p>
+      <div class="hero-btns">
+        <a href="#delivery" class="btn-primary">🚚 Order Delivery</a>
+        <a href="#collections" class="btn-secondary">Browse Collection</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">500<span class="aq">+</span></div>
+          <div class="hero-stat-label">Labels</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">4.7<span class="aq">★</span></div>
+          <div class="hero-stat-label">Google Rating</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">120<span class="aq">+</span></div>
+          <div class="hero-stat-label">Reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-img fade-up">
+      <img src="https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=700&q=80" alt="Aqua Wine & Spirits Store" loading="lazy">
+      <div class="float-badge">
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="rating-text"><strong>4.7 Stars</strong>120 Google Reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="section-header fade-up">
+    <span class="section-label">Featured Collections</span>
+    <h2 class="section-title">Explore Our Selection</h2>
+    <p class="section-subtitle">Every bottle is hand-picked by our team. From crowd favorites to hidden gems you won't find anywhere else.</p>
+  </div>
+  <div class="collection-grid">
+    <div class="collection-card fade-up">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="Wine" loading="lazy">
+      <div class="card-body">
+        <h3>Wine</h3>
+        <p>300+ labels from Napa, Bordeaux, Tuscany, and beyond. Red, white, rosé, and sparkling.</p>
+        <a href="#" class="card-link">Shop Wine →</a>
+      </div>
+    </div>
+    <div class="collection-card fade-up">
+      <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=600&q=80" alt="Spirits" loading="lazy">
+      <div class="card-body">
+        <h3>Spirits</h3>
+        <p>Whiskey, tequila, vodka, gin, rum — from top shelf to everyday essentials.</p>
+        <a href="#" class="card-link">Shop Spirits →</a>
+      </div>
+    </div>
+    <div class="collection-card fade-up">
+      <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&q=80" alt="Beer" loading="lazy">
+      <div class="card-body">
+        <h3>Beer & Seltzer</h3>
+        <p>Chicago craft, Belgian imports, IPAs, stouts, lagers, and hard seltzers.</p>
+        <a href="#" class="card-link">Shop Beer →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img fade-up">
+      <img src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?w=700&q=80" alt="Wine bottles on shelves" loading="lazy">
+    </div>
+    <div class="about-text fade-up">
+      <span class="section-label">About Aqua</span>
+      <h2 class="section-title">More Than a Liquor Store</h2>
+      <p class="section-subtitle">Aqua Wine & Spirits is a River North staple. We're known for our carefully curated selection, expert staff, and welcoming atmosphere. Whether you're a seasoned collector or exploring something new, we'll help you find exactly what you're looking for.</p>
+      <div class="about-features">
+        <div class="feature">
+          <div class="feature-icon">🍷</div>
+          <h4>Expert Curation</h4>
+          <p>Every bottle hand-selected by our team</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🚚</div>
+          <h4>Local Delivery</h4>
+          <p>Fast delivery across Chicago</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⭐</div>
+          <h4>Top Rated</h4>
+          <p>4.7 stars from 120+ reviews</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏙️</div>
+          <h4>River North</h4>
+          <p>Heart of Chicago since day one</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY CTA -->
+<section class="delivery" id="delivery">
+  <div class="fade-up">
+    <span class="section-label">Delivery Available</span>
+    <h2 class="section-title">Get It Delivered to Your Door</h2>
+    <p class="section-subtitle">Don't feel like going out? We deliver across Chicago. Call or order online — we'll handle the rest.</p>
+    <a href="tel:+13125550000" class="btn-white">📞 Call (312) 555-0000</a>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section id="hours">
+  <div class="section-header fade-up">
+    <span class="section-label">Visit Us</span>
+    <h2 class="section-title">Hours & Location</h2>
+  </div>
+  <div class="hours-grid">
+    <div class="fade-up">
+      <ul class="hours-list">
+        <li><span class="day">Monday — Thursday</span><span class="time">10:00 AM — 10:00 PM</span></li>
+        <li><span class="day">Friday — Saturday</span><span class="time">10:00 AM — 11:00 PM</span></li>
+        <li><span class="day">Sunday</span><span class="time">11:00 AM — 9:00 PM</span></li>
+      </ul>
+    </div>
+    <div class="location-info fade-up">
+      <h3>Find Us</h3>
+      <div class="location-detail"><span class="icon">📍</span><span>503 N La Salle Dr, Chicago, IL 60654</span></div>
+      <div class="location-detail"><span class="icon">📞</span><span>(312) 555-0000</span></div>
+      <div class="location-detail"><span class="icon">✉️</span><span>hello@aquaspirits.com</span></div>
+      <a href="https://maps.google.com/?q=503+N+La+Salle+Dr+Chicago+IL+60654" target="_blank" class="map-link">📍 Open in Google Maps →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">AQUA</div>
+      <p class="footer-desc">Your neighborhood wine & spirits destination in River North, Chicago. Curated selections, expert guidance, fast delivery.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#hours">Hours</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Social</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Yelp</a></li>
+        <li><a href="#">Google</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Aqua Wine & Spirits. All rights reserved. | Website by <span>Corner Digital Group</span></div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),trail=document.getElementById('cursorTrail');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.transform=`translate(${mx-6}px,${my-6}px)`});
+function animateTrail(){tx+=(mx-tx)*.12;ty+=(my-ty)*.12;trail.style.transform=`translate(${tx-18}px,${ty-18}px)`;requestAnimationFrame(animateTrail)}
+animateTrail();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{trail.style.width='50px';trail.style.height='50px'});el.addEventListener('mouseleave',()=>{trail.style.width='36px';trail.style.height='36px'})});
+document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
